@@ -48,9 +48,9 @@ component functions directly.  This is useful if, say, you're writing
 
 ### copy.file(from, to, options) → Promise
 
-Copies a ordinary file `from` to destination `to`.  Uses
-`fs-write-stream-atomic` to ensure that the file is entirely copied or not
-at all.
+Copies an ordinary file `from` to destination `to`.  Uses
+`fs-write-stream-atomic` to ensure that the file is either entirely copied
+or not at all.
 
 Options are:
 
@@ -65,8 +65,9 @@ Options are:
 
 ### copy.symlink(from, to, options) → Promise
 
-Copies a symlink `from` to destination `to`.  If on Windows then if
-symlinking fails, a junction will be used instead.
+Copies a symlink `from` to destination `to`.  If you're using Windows and
+symlinking fails and what you're linking is a directory then junctions will
+be tried instead.
 
 Options are:
 
