@@ -1,12 +1,12 @@
 {
   "name": "copy-concurrently",
   "version": "1.0.0",
-  "description": "Copy files, directories and links, preserving ownership and perms, with configurable concurrency.",
+  "description": "Promises of copies of files, directories and symlinks, with concurrency controls and win32 junction fallback.",
   "main": "copy.js",
   "scripts": {
     "test": "standard && tap --coverage test"
   },
-  "keywords": [],
+  "keywords": ["copy", "cpr"],
   "author": "Rebecca Turner <me@re-becca.org> (http://re-becca.org/)",
   "license": "ISC",
   "dependencies": {
