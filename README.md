@@ -44,7 +44,7 @@ Options can also include dependency injection:
 
 Ordinarily you'd only call `copy` above.  But it's possible to use it's
 component functions directly.  This is useful if, say, you're writing
-[@npminc/move](https://npmjs.com/package/@npminc/move). 
+[move-concurently](https://npmjs.com/package/move-concurrently).
 
 ### copy.file(from, to, options) → Promise
 
