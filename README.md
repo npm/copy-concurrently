@@ -1,9 +1,9 @@
-# @npminc/copy
+# copy-concurrently
 
 Copy files, directories and symlinks
 
 ```
-const copy = require('@npminc/copy')
+const copy = require('copy-concurrently')
 copy('/path/to/thing', '/new/path/thing').then(() => {
   // this is now copied
 }).catch(err => {

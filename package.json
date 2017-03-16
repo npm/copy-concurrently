@@ -1,7 +1,7 @@
 {
-  "name": "@npmcorp/copy",
+  "name": "copy-concurrently",
   "version": "1.0.0",
-  "description": "Copy files, directories and links, preserving ownership and perms",
+  "description": "Copy files, directories and links, preserving ownership and perms, with configurable concurrency.",
   "main": "copy.js",
   "scripts": {
     "test": "standard && tap --coverage test"
@@ -31,10 +31,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/npm/npmcorp-copy.git"
+    "url": "git+https://github.com/npm/copy-concurrently.git"
   },
   "bugs": {
-    "url": "https://github.com/npm/npmcorp-copy/issues"
+    "url": "https://github.com/npm/copy-concurrently/issues"
   },
-  "homepage": "https://www.npmjs.com/package/@npmcorp/copy"
+  "homepage": "https://www.npmjs.com/package/copy-concurrently"
 }
