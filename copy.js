@@ -122,6 +122,7 @@ function copyItem (from, to, opts) {
 
 function recurseDir (from, to, opts) {
   validate('SSO', [from, to, opts])
+  opts.mkdirpAsync = promisify(opts.Promise, mkdirp)
   var recurseWith = opts.recurseWith || copyItem
   var fs = opts.fs || nodeFs
   var chown = opts.chown || promisify(Promise, fs.chown)
