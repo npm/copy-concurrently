@@ -126,7 +126,7 @@ function recurseDir (from, to, opts) {
   var fs = opts.fs || nodeFs
   var chown = opts.chown || promisify(Promise, fs.chown)
   var readdir = opts.readdir || promisify(Promise, fs.readdir)
-  var mkdirpAsync = opts.mkdirpAsync || promisify(opts.Promise, mkdirp)
+  var mkdirpAsync = opts.mkdirpAsync || promisify(Promise, mkdirp)
 
   return mkdirpAsync(to, {fs: fs, mode: opts.mode}).then(function () {
     var getuid = opts.getuid || process.getuid
