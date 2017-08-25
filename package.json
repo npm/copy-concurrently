@@ -1,6 +1,6 @@
 {
   "name": "copy-concurrently",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Promises of copies of files, directories and symlinks, with concurrency controls and win32 junction fallback.",
   "main": "copy.js",
   "scripts": {
