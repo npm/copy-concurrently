@@ -48,6 +48,7 @@ function copy (from, to, opts) {
   if (!opts.readlink) opts.readlink = promisify(opts.Promise, fs.readlink)
   if (!opts.symlink) opts.symlink = promisify(opts.Promise, fs.symlink)
   if (!opts.chmod) opts.chmod = promisify(opts.Promise, fs.chmod)
+  if (!opts.copyFile) opts.copyFile = fs.copyFile && promisify(opts.Promise, fs.copyFile)
 
   opts.top = from
   opts.mkdirpAsync = promisify(opts.Promise, mkdirp)
@@ -181,6 +182,7 @@ function copyFile (from, to, opts) {
   var writeStreamAtomic = opts.writeStreamAtomic || stockWriteStreamAtomic
   var Promise = opts.Promise || global.Promise
   var chmod = opts.chmod || promisify(Promise, fs.chmod)
+  var copyFile = opts.copyFile || (fs.copyFile && promisify(Promise, fs.copyFile))
 
   var writeOpts = {}
   var getuid = opts.getuid || process.getuid
@@ -189,6 +191,15 @@ function copyFile (from, to, opts) {
       uid: opts.uid,
       gid: opts.gid
     }
+  }
+
+  if (copyFile) {
+    var chown = opts.chown || promisify(Promise, fs.chown)
+    return copyFile(from, to).then(() => {
+      if (writeOpts.chown) return chown(to, writeOpts.uid, writeOpts.gid)
+    }).then(() => {
+      if (opts.mode != null) return chmod(to, opts.mode)
+    })
   }
 
   return new Promise(function (resolve, reject) {
