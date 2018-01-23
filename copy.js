@@ -124,6 +124,7 @@ function recurseDir (from, to, opts) {
   validate('SSO', [from, to, opts])
   var recurseWith = opts.recurseWith || copyItem
   var fs = opts.fs || nodeFs
+  var Promise = opts.Promise || global.Promise
   var chown = opts.chown || promisify(Promise, fs.chown)
   var readdir = opts.readdir || promisify(Promise, fs.readdir)
   var mkdirpAsync = opts.mkdirpAsync || promisify(Promise, mkdirp)
@@ -145,10 +146,10 @@ function recurseDir (from, to, opts) {
 function copySymlink (from, to, opts) {
   validate('SSO', [from, to, opts])
   var fs = opts.fs || nodeFs
+  var Promise = opts.Promise || global.Promise
   var readlink = opts.readlink || promisify(Promise, fs.readlink)
   var stat = opts.stat || promisify(Promise, fs.symlink)
   var symlink = opts.symlink || promisify(Promise, fs.symlink)
-  var Promise = opts.Promise || global.Promise
 
   return readlink(from).then(function (fromDest) {
     var absoluteDest = path.resolve(path.dirname(from), fromDest)
