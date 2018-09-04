@@ -195,9 +195,9 @@ function copyFile (from, to, opts) {
 
   if (copyFile) {
     var chown = opts.chown || promisify(Promise, fs.chown)
-    return copyFile(from, to).then(() => {
+    return copyFile(from, to).then(function () {
       if (writeOpts.chown) return chown(to, writeOpts.uid, writeOpts.gid)
-    }).then(() => {
+    }).then(function () {
       if (opts.mode != null) return chmod(to, opts.mode)
     })
   }
