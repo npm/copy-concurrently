@@ -9,6 +9,7 @@ var nodeFs = require('fs')
 var path = require('path')
 var validate = require('aproba')
 var stockWriteStreamAtomic = require('fs-write-stream-atomic')
+var stockWriteFileAtomic = require('write-file-atomic')
 var mkdirp = require('mkdirp')
 var rimraf = require('rimraf')
 var isWindows = require('./is-windows')
@@ -193,9 +194,18 @@ function copyFile (from, to, opts) {
     }
   }
 
+  var copying
   if (copyFile) {
     var chown = opts.chown || promisify(Promise, fs.chown)
-    return copyFile(from, to).then(function () {
+    copying = copyFile(from, to)
+  } else if (opts.size < 1048576) {
+    var readFile = opts.readFile || promisify(Promise, fs.readFile)
+    var writeFileAtomic = opts.writeFileAtomic || promisify(Promise, stockWriteFileAtomic)
+    var chown = opts.chown || promisify(Promise, fs.chown)
+    copying = readFile(from).then(function (buf) { return writeFileAtomic(to, buf) })
+  }
+  if (copying) {
+    return copying.then(function () {
       if (writeOpts.chown) return chown(to, writeOpts.uid, writeOpts.gid)
     }).then(function () {
       if (opts.mode != null) return chmod(to, opts.mode)
