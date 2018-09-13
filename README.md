@@ -20,7 +20,7 @@ are unavailable then junctions will be used.
 ### copy(from, to, [options]) → Promise
 
 Recursively copies `from` to `to` and resolves its promise when finished. 
-If `to` already exists then the promise will be rejected with an `EEXIST`
+If `to` already exists then the promise will be rejected with an `EXIST`
 error.
 
 Options are:
@@ -44,7 +44,7 @@ Options can also include dependency injection:
 
 Ordinarily you'd only call `copy` above.  But it's possible to use it's
 component functions directly.  This is useful if, say, you're writing
-[move-concurently](https://npmjs.com/package/move-concurrently).
+[move-concurrently](https://npmjs.com/package/move-concurrently).
 
 ### copy.file(from, to, options) → Promise
 
