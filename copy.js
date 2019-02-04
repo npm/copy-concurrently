@@ -99,7 +99,7 @@ function copyItem (from, to, opts) {
     if (err && err.code !== 'ENOENT') return Promise.reject(err)
     return lstat(from)
   }).then(function (fromStat) {
-    var cmdOpts = extend(extend({}, opts), fromStat)
+    var cmdOpts = extend(extend({}, fromStat), opts)
     if (fromStat.isDirectory()) {
       return recurseDir(from, to, cmdOpts)
     } else if (fromStat.isSymbolicLink()) {
