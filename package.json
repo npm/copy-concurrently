@@ -15,14 +15,14 @@
   "dependencies": {
     "aproba": "^2.0.0",
     "fs-write-stream-atomic": "^1.0.8",
-    "mkdirp": "^0.5.1",
+    "mkdirp": "^0.5.5",
     "rimraf": "^2.5.4",
     "run-queue": "1 || 2"
   },
   "devDependencies": {
     "standard": "^8.6.0",
     "tacks": "^1.3.0",
-    "tap": "^12.4.0"
+    "tap": "^14.10.7"
   },
   "files": [
     "copy.js",
