@@ -50,7 +50,7 @@ function copy (from, to, opts) {
   if (!opts.chmod) opts.chmod = promisify(opts.Promise, fs.chmod)
 
   opts.top = from
-  opts.mkdirpAsync = promisify(opts.Promise, mkdirp)
+  opts.mkdirpAsync = mkdirp
   var rimrafAsync = promisify(opts.Promise, rimraf)
 
   var queue = new RunQueue({
@@ -127,7 +127,7 @@ function recurseDir (from, to, opts) {
   var Promise = opts.Promise || global.Promise
   var chown = opts.chown || promisify(Promise, fs.chown)
   var readdir = opts.readdir || promisify(Promise, fs.readdir)
-  var mkdirpAsync = opts.mkdirpAsync || promisify(Promise, mkdirp)
+  var mkdirpAsync = opts.mkdirpAsync || mkdirp
 
   return mkdirpAsync(to, {fs: fs, mode: opts.mode}).then(function () {
     var getuid = opts.getuid || process.getuid
